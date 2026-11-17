@@ -1,0 +1,74 @@
+{
+  "id": "chatgpt-gemini-v1",
+  "kind": "real",
+  "collection": {
+    "source": "Transcribed from user-provided screenshots",
+    "candidates": {
+      "A": {
+        "product": "ChatGPT",
+        "interface_label": "Instant"
+      },
+      "B": {
+        "product": "Gemini",
+        "interface_label": "Hydrogen"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "python",
+      "category": "Coding",
+      "prompt": "Write a Python function that returns the first item in a list, or None for an empty list.",
+      "reference": "For a non-empty list, return the element at index 0. For an empty list, return None without raising an exception.",
+      "responses": {
+        "A": "def first_item(items):\n    return items[0] if items else None\n\nExample:\n\nprint(first_item([10, 20, 30]))  # 10\nprint(first_item([]))            # None",
+        "B": "from typing import TypeVar, Sequence\n\nT = TypeVar(\"T\")\n\ndef get_first(items: Sequence[T]) -> T | None:\n    \"\"\"Return the first item in a sequence, or None if it is empty.\"\"\"\n    return items[0] if items else None\n\nExample Usage\n\nprint(get_first([10, 20, 30]))  # Output: 10\nprint(get_first([]))            # Output: None\n\nThis uses a conditional expression (items[0] if items else None) to avoid raising an IndexError when the list is empty, running in O(1) time."
+      }
+    },
+    {
+      "id": "palindrome",
+      "category": "Coding",
+      "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case, spaces, and punctuation. Return True or False.",
+      "reference": "Return a Boolean after comparing the normalized string with its reverse. Check a mixed-case palindrome with spaces and punctuation, such as \"A man, a plan, a canal: Panama\", and a non-palindrome, such as \"Race a car\".",
+      "responses": {
+        "A": "def is_palindrome(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n\nExample:\n\nprint(is_palindrome(\"A man, a plan, a canal: Panama\"))  # True\nprint(is_palindrome(\"Racecar\"))                        # True\nprint(is_palindrome(\"Hello, World!\"))                  # False",
+        "B": "def is_palindrome(text: str) -> bool:\n    \"\"\"Return True if text is a palindrome (ignoring case, spaces, and punctuation).\"\"\"\n    cleaned = \"\".join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n\nExample Usage\n\nprint(is_palindrome(\"A man, a plan, a canal: Panama\"))  # Output: True\nprint(is_palindrome(\"Race a car\"))                      # Output: False\nprint(is_palindrome(\"No 'x' in Nixon\"))                  # Output: True\n\nHow it works\n\n- char.isalnum() strips out all spaces, punctuation, and symbols, keeping only letters and numbers.\n- char.lower() normalizes the casing.\n- cleaned == cleaned[::-1] compares the filtered string against its reversed slice in O(n) time."
+      },
+      "collection_note": "Transcribed from screenshots of the existing model chats. Gemini's docstring closing quotes were clipped and reconstructed."
+    },
+    {
+      "id": "sleep",
+      "category": "Instruction following",
+      "prompt": "Write exactly three sentences about why sleep matters. Do not use the word \"health\", and end the last sentence with a question mark.",
+      "reference": "Exactly three sentences. The word \"health\" must not appear. The final sentence must end with a question mark. Any violation is an instruction adherence failure.",
+      "responses": {
+        "A": "Sleep helps your body recover and restores your energy for the next day. Getting enough sleep improves memory, focus, and mood. Isn't a good night's sleep important for feeling your best?",
+        "B": "During sleep, the brain clears out metabolic waste products and consolidates short-term experiences into long-term memories. A lack of adequate rest rapidly impairs focus, emotional regulation, and physical recovery, making everyday challenges feel significantly harder. Given how much your cognitive sharpness and mood depend on overnight restoration, why would anyone treat rest as optional?"
+      },
+      "collection_note": "Both replies supplied as text by the user."
+    },
+    {
+      "id": "api",
+      "category": "Instruction following",
+      "prompt": "Explain what an API is in under 50 words, using one analogy. Do not use the word \"interface\".",
+      "reference": "Under 50 words. Contains exactly one analogy. The word \"interface\" must not appear. Must be technically accurate.",
+      "responses": {
+        "A": "An API allows different software applications to communicate and share data. Think of it like a waiter in a restaurant: you place an order, the waiter takes it to the kitchen, and brings back your food. Similarly, an API sends requests and returns responses between applications.",
+        "B": "An API is a set of rules allowing two software programs to talk to each other. Like a restaurant waiter, it takes your order to the kitchen and brings back your food without you ever needing to see how the kitchen works."
+      },
+      "collection_note": "Transcribed from user-provided screenshots."
+    },
+    {
+      "id": "remote-work",
+      "category": "Summarization",
+      "prompt": "Summarize the following passage in exactly three bullet points.\n\nRemote work has grown rapidly since 2020. Employees report more flexibility and no commute, which many say improves their work-life balance. However, some workers feel isolated, and managers often struggle to track collaboration and maintain team culture. Many companies are now adopting hybrid models that mix office days with remote days.",
+      "reference": "Exactly three bullets. Should cover the benefits (flexibility, no commute), the challenges (isolation, collaboration and culture), and the shift to hybrid models. No facts beyond the passage.",
+      "responses": {
+        "A": "- Remote work has grown rapidly since 2020, offering employees greater flexibility and better work-life balance.\n- Challenges include employee isolation, difficulty tracking collaboration, and maintaining team culture.\n- Many companies are adopting hybrid work models that combine remote work with office days.",
+        "B": "- Since 2020, the rapid expansion of remote work has enhanced employees' work-life balance through greater flexibility and eliminated commutes.\n- Despite these perks, remote setups can cause worker isolation and make it harder for managers to monitor collaboration and sustain team culture.\n- To address these challenges, numerous organizations are transitioning to hybrid schedules that blend in-office and remote workdays."
+      },
+      "collection_note": "Transcribed from user-provided screenshots. The prompt's first sentence is fully visible in the ChatGPT screenshot."
+    }
+  ]
+}
+
